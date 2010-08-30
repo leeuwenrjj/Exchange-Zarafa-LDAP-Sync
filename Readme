@@ -1,0 +1,7 @@
+Please open the python script and read the first section.
+To run this tool you should, at least, fill out the following settings:
+
+# define exchange server LDAP - MUST CHANGE, DEPENDS ON ENVIRONMENT
+# define zarafa server LDAP - MUST CHANGE, DEPENDS ON ENVIRONMENT
+
+

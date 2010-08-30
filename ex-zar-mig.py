@@ -45,27 +45,32 @@ except:
 
 
 
-################################################################
+###################################################################
 # define exchange server LDAP - MUST CHANGE, DEPENDS ON ENVIRONMENT
 # If you have a large environment please remember to allow large results from LDAP, for MS AD see: http://support.microsoft.com/kb/315071
+###################################################################
 ex_server = 'ldap://10.0.0.1'                         # Exchange/AD LDAP Server
 ex_dn = 'CN=admin,DC=test,DC=local'                   # User with write access to Exchange LDAP
 ex_pw = 'password'                                    # Password of Exchange LDAP user
 ex_base_dn = 'OU=users,DC=test,DC=local'              # Where to look for users (and al sub-containers)
 ex_filter = '(mail=testuser@test.local)'              # Filter, handy for testing on 1 user use * for all users
-################################################################
+###################################################################
 # define zarafa server LDAP - MUST CHANGE, DEPENDS ON ENVIRONMENT
+###################################################################
 za_server = 'ldap://10.0.0.1'                         # Zarafa/AD LDAP Server, probably same as ex_server
 za_dn = 'CN=admin,DC=test,DC=local'                   # User with write access to zarafa LDAP, probably same as ex_dn
 za_pw = 'password'                                    # Password of Zarafa LDAP user, probably same as ex_pw
 za_base_dn = 'OU=users,DC=test,DC=local'               # Where to look for users (and al sub-containers), probably same as ex_base_dn
-################################################################
-# ldap server initialization defenition
+
+
+
+###################################################################
+# ldap server initialization defenition, leace this as-is
 ex_ldap = ldap.initialize(ex_server)
 za_ldap = ldap.initialize(za_server)
+###################################################################
 
-
-################################################################
+###################################################################
 # Attribute mappings, you should probably leave this as-is
 #
 # These are the LDAP attributes we use on the Exchange side, these attributes will be mapped to correspondig za_attrs. ORDER OF THE ATTRIBUTES SHOULD MAP EXACTLY TO za_attrs!
@@ -79,9 +84,13 @@ za_dgs_filter=['zarafaSendAsPrivilege']         # We also need this as a filter,
 ex_mail_attribute = ['mail','proxyAddresses']   # Exchange LDAP primary and secondary attributes for mail
 za_mail_attribute = 'otherMailbox'              # Zarafa secondary mail address attributes
 za_mail_attribute_filter = ['otherMailbox']     # We also need this as a filter, should probably be same as za_mail_attribute
-###############################################################
+###################################################################
 
 
+###################################################################
+# Code starts here, only l33t coders should edit from here :)
+###################################################################
+#
 
 #bind the ADDS server
 try:
