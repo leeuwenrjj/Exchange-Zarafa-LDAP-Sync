@@ -38,7 +38,6 @@
 import sys
 try:
     import ldap 
-#    from ldap.filter import filter_format, escape_filter_chars
 except:
     print "You are missing some modules.. Is Python LDAP on the system?"
     sys.exit()
@@ -65,7 +64,7 @@ za_base_dn = 'OU=users,DC=test,DC=local'               # Where to look for users
 
 
 ###################################################################
-# ldap server initialization defenition, leace this as-is
+# ldap server initialization defenition, leave this as-is
 ex_ldap = ldap.initialize(ex_server)
 za_ldap = ldap.initialize(za_server)
 ###################################################################
@@ -92,7 +91,7 @@ za_mail_attribute_filter = ['otherMailbox']     # We also need this as a filter,
 ###################################################################
 #
 
-#bind the ADDS server
+#bind the Exchange LDAP server
 try:
     ex_ldap.bind_s( ex_dn, ex_pw )
     print "Successfully connected to Exchange AD LDAP server."
@@ -106,7 +105,7 @@ except ldap.LDAPError, e:
         print e
     sys.exit()
 
-#bind the RHDS server
+#bind the Zarafa LDAP server
 try: 
     za_ldap.bind_s( za_dn, za_pw )
     print "Successfully connected to Zarafa LDAP server."
